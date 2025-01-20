@@ -1,5 +1,6 @@
 export type VerificationForm = {
-  code: string;
+  userId: string;
+  token: string;
 };
 
 export type LoginForm = {

@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const VerifyFormSchema = z.object({
-  code: z
+  token: z
     .string({ required_error: "Code required" })
     .min(8, "Code must have exactly 8 characters")
     .max(8, "Code must have exactly 8 characters"),
