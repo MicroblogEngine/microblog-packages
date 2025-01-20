@@ -1,5 +1,5 @@
 {
-  "name": "@microblog/types",
+  "name": "@ararog/microblog-types",
   "version": "0.0.1",
   "private": true,
   "main": "src/index.ts",
