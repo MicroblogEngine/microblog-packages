@@ -10,8 +10,8 @@
     "build": "tsup src/index.ts --format cjs --dts"
   },
   "devDependencies": {
-    "@microblog/eslint-config": "workspace:*",
-    "@microblog/typescript-config": "workspace:*",
+    "@ararog/microblog-eslint-config": "workspace:*",
+    "@ararog/microblog-typescript-config": "workspace:*",
     "@turbo/gen": "^1.12.4",
     "@types/node": "^20.11.24",
     "tsup": "^8.3.5",

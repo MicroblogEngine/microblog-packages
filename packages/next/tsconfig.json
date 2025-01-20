@@ -1,5 +1,5 @@
 {
-  "extends": "@microblog/typescript-config/base.json",
+  "extends": "@ararog/microblog-typescript-config/base.json",
   "compilerOptions": {
     "outDir": "dist"
   },

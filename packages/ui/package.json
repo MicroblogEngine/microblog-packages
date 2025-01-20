@@ -1,5 +1,5 @@
 {
-  "name": "@microblog/ui",
+  "name": "@ararog/microblog-ui",
   "version": "0.0.0",
   "private": true,
   "exports": {
@@ -13,8 +13,8 @@
     "check-types": "tsc --noEmit"
   },
   "devDependencies": {
-    "@microblog/eslint-config": "workspace:*",
-    "@microblog/typescript-config": "workspace:*",
+    "@ararog/microblog-eslint-config": "workspace:*",
+    "@ararog/microblog-typescript-config": "workspace:*",
     "@turbo/gen": "^1.12.4",
     "@types/node": "^20.11.24",
     "@types/react": "18.3.0",

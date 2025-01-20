@@ -1,1 +1,1 @@
-export const cb = () => {};
+export type cb = () => void;
