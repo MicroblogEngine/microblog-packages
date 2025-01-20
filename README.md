@@ -1,4 +1,4 @@
-# Microblog packafes
+# Microblog packages
 
 Repo of microblog shared packages.
 
