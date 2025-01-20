@@ -1,8 +1,8 @@
-# Turborepo starter
+# Microblog packafes
 
-This Turborepo starter is maintained by the Turborepo core team.
+Repo of microblog shared packages.
 
-## Using this example
+## Using it
 
 Run the following command:
 
@@ -12,15 +12,15 @@ npx create-turbo@latest
 
 ## What's inside?
 
-This Turborepo includes the following packages/apps:
+This repo contains the following packages:
 
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+- `@microblog/next`: a package with next related code
+- `@microblog/state`: a package with state menagement utilities
+- `@microblog/types`: a package with common types
+- `@microblog/validation`: a package with validation related code
+- `@microblog/ui`: a stub React component library shared by both `web` and `docs` applications
+- `@microblog/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
+- `@microblog/typescript-config`: `tsconfig.json`s used throughout the monorepo
 
 Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
 
@@ -34,19 +34,19 @@ This Turborepo has some additional tools already setup for you:
 
 ### Build
 
-To build all apps and packages, run the following command:
+To build all packages, run the following command:
 
 ```
-cd my-turborepo
+cd microblog-packages
 pnpm build
 ```
 
 ### Develop
 
-To develop all apps and packages, run the following command:
+To develop all packages, run the following command:
 
 ```
-cd my-turborepo
+cd microblog-packages
 pnpm dev
 ```
 
@@ -60,7 +60,7 @@ Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo
 By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
 
 ```
-cd my-turborepo
+cd microblog-packages
 npx turbo login
 ```
 
