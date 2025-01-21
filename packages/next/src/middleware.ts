@@ -31,20 +31,23 @@ export async function middleware(req:NextRequest) {
     if(!authorization)
       return new NextResponse(null, { status: 401 });
 
-    // Bearer token
-    const token = authorization?.split(" ")[1];
     try{
-      if(process.env.AUTH_SECRET) {
-        const { payload: { id }} = await jwtVerify(token, 
-          new TextEncoder().encode(process.env.AUTH_SECRET),
-          {
-            algorithms: ['HS256'],
-          });
-        if(id) {
-          req.headers.append("user", id as string);
-        }
-        else
-          return new NextResponse(null, { status: 401 });
+      if(! process.env.AUTH_SECRET) {
+        return new NextResponse(null, { status: 401 });
+      }
+
+      let token = authorization?.split(" ");
+      if (token.length !== 2) {
+        return new NextResponse(null, { status: 401 });
+      } 
+
+      const { payload: { id }} = await jwtVerify(token[1]!, 
+        new TextEncoder().encode(process.env.AUTH_SECRET),
+        {
+          algorithms: ['HS256'],
+        });
+      if(id) {
+        req.headers.append("user", id as string);
       }
     }
     catch{
