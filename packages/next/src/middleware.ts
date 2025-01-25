@@ -1,6 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { jwtVerify } from 'jose'
 
+type JWT = {
+  id: string;
+  role: string;
+}
+
 export async function middleware(req:NextRequest) {
   const res = NextResponse.next();
 
@@ -41,13 +46,15 @@ export async function middleware(req:NextRequest) {
         return new NextResponse(null, { status: 401 });
       } 
 
-      const { payload: { id }} = await jwtVerify(token[1]!, 
+      const { payload } = await jwtVerify(token[1]!, 
         new TextEncoder().encode(process.env.AUTH_SECRET),
         {
           algorithms: ['HS256'],
         });
-      if(id) {
-        req.headers.append("user", id as string);
+      if(payload) {
+        const jwt = payload as JWT;
+        req.headers.append("user", jwt.id);
+        req.headers.append("role", jwt.role);
       }
     }
     catch{

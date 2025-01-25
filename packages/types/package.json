@@ -1,8 +1,9 @@
 {
   "name": "@ararog/microblog-types",
-  "version": "0.0.7",
+  "version": "0.0.13",
   "private": false,
-  "main": "src/index.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "lint": "eslint . --max-warnings 0",
     "generate:component": "turbo gen react-component",

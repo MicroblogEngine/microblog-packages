@@ -1,10 +1,10 @@
 import { z } from "zod";
 
-export const VerifyFormSchema = z.object({
+export const VerifyPasswordFormSchema = z.object({
   token: z
     .string({ required_error: "Code required" })
-    .min(8, "Code must have exactly 8 characters")
-    .max(8, "Code must have exactly 8 characters"),
+    .min(8, "Code must have exactly 8 alphanumeric characters")
+    .max(8, "Code must have exactly 8 alphanumeric characters"),
 });
 
 export const LoginFormSchema = z.object({
@@ -41,3 +41,33 @@ export const SignupFormSchema = z
     message: "Password and its confirmation doesn't match",
     path: ["confirmPassword"],
   });
+
+export const ForgotPasswordFormSchema = z.object({
+  email: z
+    .string({ required_error: "Email is required" })
+    .email("Invalid email"),
+});
+
+export const ResetPasswordFormSchema = z.object({
+  email: z
+    .string({ required_error: "Email is required" })
+    .email("Invalid email"),
+  password: z
+    .string({ required_error: "Password is required" })
+    .min(1, "Password is required")
+    .min(8, "Password must be more than 8 characters")
+    .max(32, "Password must be less than 32 characters"),
+  confirmPassword: z
+    .string({ required_error: "Password confirmation is required" })
+    .min(1, "Password confirmation is required")
+    .min(8, "Password confirmation must be more than 8 characters")
+    .max(32, "Password confirmation must be less than 32 characters"),
+  token: z.string({ required_error: "Code required" })
+    .min(8, "Code must have exactly 8 alphanumeric characters")
+    .max(8, "Code must have exactly 8 alphanumeric characters"),    
+})
+.refine((data) => data.password === data.confirmPassword, {
+  message: "Password and its confirmation doesn't match",
+  path: ["confirmPassword"],
+});
+

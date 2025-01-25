@@ -14,3 +14,14 @@ export type SignupForm = {
   password: string;
   confirmPassword: string;
 };
+
+export type ForgotPasswordForm = {
+  email: string;
+};
+
+export type ResetPasswordForm = {
+  email: string;
+  token: string;
+  password: string;
+  confirmPassword: string;
+};
