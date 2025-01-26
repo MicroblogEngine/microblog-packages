@@ -8,12 +8,19 @@ export type LoginForm = {
   password: string;
 };
 
-export type SignupForm = {
+export type SignupDetailsForm = {
+  name: string;
+  birthDate: string;
+};
+
+export type SignupUserForm = {
   email: string;
   username: string;
   password: string;
   confirmPassword: string;
 };
+
+export type SignupForm = SignupUserForm & SignupDetailsForm;
 
 export type ForgotPasswordForm = {
   email: string;

@@ -1,6 +1,9 @@
 import { z } from "zod";
 
 export const VerifyPasswordFormSchema = z.object({
+  userId: z
+  .string({ required_error: "User ID is required" })
+  .uuid("Invalid user ID"),  
   token: z
     .string({ required_error: "Code required" })
     .min(8, "Code must have exactly 8 alphanumeric characters")
@@ -18,7 +21,17 @@ export const LoginFormSchema = z.object({
     .max(32, "Password must be less than 32 characters"),
 });
 
-export const SignupFormSchema = z
+export const SignupDetailsFormSchema = z
+  .object({
+    name: z
+      .string({ required_error: "Name is required" })
+      .min(5, "Name must be more than 5 characters")
+      .max(100, "Name must be less than 100 characters"),
+    birthDate: z
+      .date({ required_error: "Birth date is required" }),
+  });
+
+export const SignupUserFormSchema = z
   .object({
     username: z
       .string({ required_error: "Username is required" })
@@ -41,6 +54,8 @@ export const SignupFormSchema = z
     message: "Password and its confirmation doesn't match",
     path: ["confirmPassword"],
   });
+
+export const SignupFormSchema = SignupDetailsFormSchema.and(SignupUserFormSchema);
 
 export const ForgotPasswordFormSchema = z.object({
   email: z
