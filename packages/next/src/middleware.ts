@@ -28,38 +28,34 @@ export async function middleware(req:NextRequest) {
       'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
   )
   */
-
+ 
   if(! req.url.includes('/health') && 
     ! req.url.includes('/metrics') && 
     ! req.url.includes('/auth')) {
     const authorization = req.headers.get('authorization');
-    if(!authorization)
-      return new NextResponse(null, { status: 401 });
-
-    try{
-      if(! process.env.AUTH_SECRET) {
-        return new NextResponse(null, { status: 401 });
-      }
-
-      let token = authorization?.split(" ");
-      if (token.length !== 2) {
-        return new NextResponse(null, { status: 401 });
-      } 
-
-      const { payload } = await jwtVerify(token[1]!, 
-        new TextEncoder().encode(process.env.AUTH_SECRET),
-        {
-          algorithms: ['HS256'],
-        });
-      if(payload) {
-        const jwt = payload as JWT;
-        req.headers.append("user", jwt.id);
-        req.headers.append("role", jwt.role);
-      }
+    if(!authorization) {
+      return new NextResponse(JSON.stringify({ errors: { auth: ["Missing authorization header"] } }), { status: 401 });
     }
-    catch{
-      return new NextResponse(null, { status: 401 });
-    }    
+
+    if(! process.env.AUTH_SECRET) {
+      return new NextResponse(JSON.stringify({ errors: { auth: ["Missing auth secret"] } }), { status: 401 });
+    }
+
+    const token = authorization?.split(" ");
+    if (token.length !== 2) {
+      return new NextResponse(JSON.stringify({ errors: { auth: ["Missing auth token"] } }), { status: 401 });
+    } 
+
+    const { payload } = await jwtVerify(token[1]!, 
+      new TextEncoder().encode(process.env.AUTH_SECRET),
+      {
+        algorithms: ['HS256'],
+      });
+    if(payload) {
+      const jwt = payload as JWT;
+      res.headers.set("user", jwt.id);
+      res.headers.set("role", jwt.role);
+    }
   }
 
   return res;

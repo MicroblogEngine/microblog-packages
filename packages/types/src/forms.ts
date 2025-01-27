@@ -10,7 +10,7 @@ export type LoginForm = {
 
 export type SignupDetailsForm = {
   name: string;
-  birthDate: string;
+  birthDate: Date;
 };
 
 export type SignupUserForm = {

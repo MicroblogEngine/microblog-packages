@@ -28,6 +28,7 @@ export const SignupDetailsFormSchema = z
       .min(5, "Name must be more than 5 characters")
       .max(100, "Name must be less than 100 characters"),
     birthDate: z
+      .coerce
       .date({ required_error: "Birth date is required" }),
   });
 
