@@ -34,16 +34,19 @@ export async function middleware(req:NextRequest) {
     ! req.url.includes('/auth')) {
     const authorization = req.headers.get('authorization');
     if(!authorization) {
-      return new NextResponse(JSON.stringify({ errors: { auth: ["Missing authorization header"] } }), { status: 401 });
+      console.error("Missing authorization header");
+      return new NextResponse(JSON.stringify({ errors: { auth: ["Could not authenticate"] } }), { status: 401 });
     }
 
     if(! process.env.AUTH_SECRET) {
-      return new NextResponse(JSON.stringify({ errors: { auth: ["Missing auth secret"] } }), { status: 401 });
+      console.error("Missing auth secret");
+      return new NextResponse(JSON.stringify({ errors: { auth: ["Could not authenticate"] } }), { status: 401 });
     }
 
     const token = authorization?.split(" ");
     if (token.length !== 2) {
-      return new NextResponse(JSON.stringify({ errors: { auth: ["Missing auth token"] } }), { status: 401 });
+      console.error("Missing auth token");
+      return new NextResponse(JSON.stringify({ errors: { auth: ["Could not authenticate"] } }), { status: 401 });
     } 
 
     const { payload } = await jwtVerify(token[1]!, 

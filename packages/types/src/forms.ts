@@ -27,7 +27,7 @@ export type ForgotPasswordForm = {
 };
 
 export type ResetPasswordForm = {
-  email: string;
+  userId: string;
   token: string;
   password: string;
   confirmPassword: string;
