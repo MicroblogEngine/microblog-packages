@@ -1,0 +1,1 @@
+export * from "./proto/microblog/rpc/v1/profile";

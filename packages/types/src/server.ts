@@ -1,6 +1,4 @@
-export type RequestPathProps = {
-  params?: Promise<{ id: string }>
-}
+export type RequestPathProps = Promise<{ id: string }>;
 
 export type ApiError = {
   errors: {

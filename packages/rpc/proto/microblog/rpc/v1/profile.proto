@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.ararog.microblog.rpc";
+option java_outer_classname = "ProfileProto";
+option objc_class_prefix = "HLW";
+
+package microblog.rpc.v1;
+
+service ProfileService {
+  rpc GetProfileByUserId (GetProfileByUserIdRequest) returns (GetProfileByUserIdResponse) {}
+  rpc CreateProfile (CreateProfileRequest) returns (CreateProfileResponse) {}
+}
+
+message GetProfileByUserIdRequest {
+  string id = 1;
+}
+
+message GetProfileByUserIdResponse {
+  string id = 1;
+  string name = 2;
+  string email = 3;
+  string avatar = 4;
+}
+
+message CreateProfileRequest {
+  string name = 1;
+  string birth_date = 2;
+}
+
+message CreateProfileResponse {
+  string id = 1;
+} 
