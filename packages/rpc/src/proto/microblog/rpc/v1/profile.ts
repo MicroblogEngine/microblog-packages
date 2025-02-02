@@ -10,18 +10,23 @@ import { type CallContext, type CallOptions } from "nice-grpc-common";
 
 export const protobufPackage = "microblog.rpc.v1";
 
-export interface GetProfileByUserIdRequest {
-  id: string;
-}
-
-export interface GetProfileByUserIdResponse {
+export interface Profile {
   id: string;
   name: string;
   email: string;
   avatar: string;
 }
 
+export interface GetProfileByUserIdRequest {
+  id: string;
+}
+
+export interface GetProfileByUserIdResponse {
+  profile: Profile | undefined;
+}
+
 export interface CreateProfileRequest {
+  userId: string;
   name: string;
   birthDate: string;
 }
@@ -29,6 +34,114 @@ export interface CreateProfileRequest {
 export interface CreateProfileResponse {
   id: string;
 }
+
+function createBaseProfile(): Profile {
+  return { id: "", name: "", email: "", avatar: "" };
+}
+
+export const Profile: MessageFns<Profile> = {
+  encode(message: Profile, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.id !== "") {
+      writer.uint32(10).string(message.id);
+    }
+    if (message.name !== "") {
+      writer.uint32(18).string(message.name);
+    }
+    if (message.email !== "") {
+      writer.uint32(26).string(message.email);
+    }
+    if (message.avatar !== "") {
+      writer.uint32(34).string(message.avatar);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): Profile {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseProfile();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.id = reader.string();
+          continue;
+        }
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.name = reader.string();
+          continue;
+        }
+        case 3: {
+          if (tag !== 26) {
+            break;
+          }
+
+          message.email = reader.string();
+          continue;
+        }
+        case 4: {
+          if (tag !== 34) {
+            break;
+          }
+
+          message.avatar = reader.string();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Profile {
+    return {
+      id: isSet(object.id) ? globalThis.String(object.id) : "",
+      name: isSet(object.name) ? globalThis.String(object.name) : "",
+      email: isSet(object.email) ? globalThis.String(object.email) : "",
+      avatar: isSet(object.avatar) ? globalThis.String(object.avatar) : "",
+    };
+  },
+
+  toJSON(message: Profile): unknown {
+    const obj: any = {};
+    if (message.id !== "") {
+      obj.id = message.id;
+    }
+    if (message.name !== "") {
+      obj.name = message.name;
+    }
+    if (message.email !== "") {
+      obj.email = message.email;
+    }
+    if (message.avatar !== "") {
+      obj.avatar = message.avatar;
+    }
+    return obj;
+  },
+
+  create(base?: DeepPartial<Profile>): Profile {
+    return Profile.fromPartial(base ?? {});
+  },
+  fromPartial(object: DeepPartial<Profile>): Profile {
+    const message = createBaseProfile();
+    message.id = object.id ?? "";
+    message.name = object.name ?? "";
+    message.email = object.email ?? "";
+    message.avatar = object.avatar ?? "";
+    return message;
+  },
+};
 
 function createBaseGetProfileByUserIdRequest(): GetProfileByUserIdRequest {
   return { id: "" };
@@ -89,22 +202,13 @@ export const GetProfileByUserIdRequest: MessageFns<GetProfileByUserIdRequest> = 
 };
 
 function createBaseGetProfileByUserIdResponse(): GetProfileByUserIdResponse {
-  return { id: "", name: "", email: "", avatar: "" };
+  return { profile: undefined };
 }
 
 export const GetProfileByUserIdResponse: MessageFns<GetProfileByUserIdResponse> = {
   encode(message: GetProfileByUserIdResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.id !== "") {
-      writer.uint32(10).string(message.id);
-    }
-    if (message.name !== "") {
-      writer.uint32(18).string(message.name);
-    }
-    if (message.email !== "") {
-      writer.uint32(26).string(message.email);
-    }
-    if (message.avatar !== "") {
-      writer.uint32(34).string(message.avatar);
+    if (message.profile !== undefined) {
+      Profile.encode(message.profile, writer.uint32(10).fork()).join();
     }
     return writer;
   },
@@ -121,31 +225,7 @@ export const GetProfileByUserIdResponse: MessageFns<GetProfileByUserIdResponse> 
             break;
           }
 
-          message.id = reader.string();
-          continue;
-        }
-        case 2: {
-          if (tag !== 18) {
-            break;
-          }
-
-          message.name = reader.string();
-          continue;
-        }
-        case 3: {
-          if (tag !== 26) {
-            break;
-          }
-
-          message.email = reader.string();
-          continue;
-        }
-        case 4: {
-          if (tag !== 34) {
-            break;
-          }
-
-          message.avatar = reader.string();
+          message.profile = Profile.decode(reader, reader.uint32());
           continue;
         }
       }
@@ -158,27 +238,13 @@ export const GetProfileByUserIdResponse: MessageFns<GetProfileByUserIdResponse> 
   },
 
   fromJSON(object: any): GetProfileByUserIdResponse {
-    return {
-      id: isSet(object.id) ? globalThis.String(object.id) : "",
-      name: isSet(object.name) ? globalThis.String(object.name) : "",
-      email: isSet(object.email) ? globalThis.String(object.email) : "",
-      avatar: isSet(object.avatar) ? globalThis.String(object.avatar) : "",
-    };
+    return { profile: isSet(object.profile) ? Profile.fromJSON(object.profile) : undefined };
   },
 
   toJSON(message: GetProfileByUserIdResponse): unknown {
     const obj: any = {};
-    if (message.id !== "") {
-      obj.id = message.id;
-    }
-    if (message.name !== "") {
-      obj.name = message.name;
-    }
-    if (message.email !== "") {
-      obj.email = message.email;
-    }
-    if (message.avatar !== "") {
-      obj.avatar = message.avatar;
+    if (message.profile !== undefined) {
+      obj.profile = Profile.toJSON(message.profile);
     }
     return obj;
   },
@@ -188,25 +254,27 @@ export const GetProfileByUserIdResponse: MessageFns<GetProfileByUserIdResponse> 
   },
   fromPartial(object: DeepPartial<GetProfileByUserIdResponse>): GetProfileByUserIdResponse {
     const message = createBaseGetProfileByUserIdResponse();
-    message.id = object.id ?? "";
-    message.name = object.name ?? "";
-    message.email = object.email ?? "";
-    message.avatar = object.avatar ?? "";
+    message.profile = (object.profile !== undefined && object.profile !== null)
+      ? Profile.fromPartial(object.profile)
+      : undefined;
     return message;
   },
 };
 
 function createBaseCreateProfileRequest(): CreateProfileRequest {
-  return { name: "", birthDate: "" };
+  return { userId: "", name: "", birthDate: "" };
 }
 
 export const CreateProfileRequest: MessageFns<CreateProfileRequest> = {
   encode(message: CreateProfileRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.userId !== "") {
+      writer.uint32(10).string(message.userId);
+    }
     if (message.name !== "") {
-      writer.uint32(10).string(message.name);
+      writer.uint32(18).string(message.name);
     }
     if (message.birthDate !== "") {
-      writer.uint32(18).string(message.birthDate);
+      writer.uint32(26).string(message.birthDate);
     }
     return writer;
   },
@@ -223,11 +291,19 @@ export const CreateProfileRequest: MessageFns<CreateProfileRequest> = {
             break;
           }
 
-          message.name = reader.string();
+          message.userId = reader.string();
           continue;
         }
         case 2: {
           if (tag !== 18) {
+            break;
+          }
+
+          message.name = reader.string();
+          continue;
+        }
+        case 3: {
+          if (tag !== 26) {
             break;
           }
 
@@ -245,6 +321,7 @@ export const CreateProfileRequest: MessageFns<CreateProfileRequest> = {
 
   fromJSON(object: any): CreateProfileRequest {
     return {
+      userId: isSet(object.userId) ? globalThis.String(object.userId) : "",
       name: isSet(object.name) ? globalThis.String(object.name) : "",
       birthDate: isSet(object.birthDate) ? globalThis.String(object.birthDate) : "",
     };
@@ -252,6 +329,9 @@ export const CreateProfileRequest: MessageFns<CreateProfileRequest> = {
 
   toJSON(message: CreateProfileRequest): unknown {
     const obj: any = {};
+    if (message.userId !== "") {
+      obj.userId = message.userId;
+    }
     if (message.name !== "") {
       obj.name = message.name;
     }
@@ -266,6 +346,7 @@ export const CreateProfileRequest: MessageFns<CreateProfileRequest> = {
   },
   fromPartial(object: DeepPartial<CreateProfileRequest>): CreateProfileRequest {
     const message = createBaseCreateProfileRequest();
+    message.userId = object.userId ?? "";
     message.name = object.name ?? "";
     message.birthDate = object.birthDate ?? "";
     return message;
@@ -330,10 +411,10 @@ export const CreateProfileResponse: MessageFns<CreateProfileResponse> = {
   },
 };
 
-export type ProfileServiceDefinition = typeof ProfileServiceDefinition;
-export const ProfileServiceDefinition = {
-  name: "ProfileService",
-  fullName: "microblog.rpc.v1.ProfileService",
+export type ProfilesServiceDefinition = typeof ProfilesServiceDefinition;
+export const ProfilesServiceDefinition = {
+  name: "ProfilesService",
+  fullName: "microblog.rpc.v1.ProfilesService",
   methods: {
     getProfileByUserId: {
       name: "GetProfileByUserId",
@@ -354,7 +435,7 @@ export const ProfileServiceDefinition = {
   },
 } as const;
 
-export interface ProfileServiceImplementation<CallContextExt = {}> {
+export interface ProfilesServiceImplementation<CallContextExt = {}> {
   getProfileByUserId(
     request: GetProfileByUserIdRequest,
     context: CallContext & CallContextExt,
@@ -365,7 +446,7 @@ export interface ProfileServiceImplementation<CallContextExt = {}> {
   ): Promise<DeepPartial<CreateProfileResponse>>;
 }
 
-export interface ProfileServiceClient<CallOptionsExt = {}> {
+export interface ProfilesServiceClient<CallOptionsExt = {}> {
   getProfileByUserId(
     request: DeepPartial<GetProfileByUserIdRequest>,
     options?: CallOptions & CallOptionsExt,
