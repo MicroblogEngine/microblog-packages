@@ -16,6 +16,8 @@ export const ErrorMessages = {
     couldNotDelete: "Could not delete user",
     couldNotFind: "Could not find user",
     invalidId: "Invalid user id",
+    usernameAlreadyExists: "Username already exists",
+    emailAlreadyExists: "E-mail already exists",
   },
   role: {
     notFound: "Role not found",
