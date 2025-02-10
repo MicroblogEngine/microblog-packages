@@ -2,37 +2,37 @@
 // versions:
 //   protoc-gen-ts_proto  v2.6.1
 //   protoc               unknown
-// source: proto/microblog/rpc/v1/messages/follower.proto
+// source: proto/microblog/rpc/v1/following.proto
 
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
 
 export const protobufPackage = "microblog.rpc.v1";
 
-export interface UnfollowRequest {
+export interface FollowRequest {
   message: string;
 }
 
-export interface UnfollowResponse {
+export interface FollowResponse {
   message: string;
 }
 
-function createBaseUnfollowRequest(): UnfollowRequest {
+function createBaseFollowRequest(): FollowRequest {
   return { message: "" };
 }
 
-export const UnfollowRequest: MessageFns<UnfollowRequest> = {
-  encode(message: UnfollowRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+export const FollowRequest: MessageFns<FollowRequest> = {
+  encode(message: FollowRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
     if (message.message !== "") {
       writer.uint32(10).string(message.message);
     }
     return writer;
   },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): UnfollowRequest {
+  decode(input: BinaryReader | Uint8Array, length?: number): FollowRequest {
     const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseUnfollowRequest();
+    const message = createBaseFollowRequest();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -53,11 +53,11 @@ export const UnfollowRequest: MessageFns<UnfollowRequest> = {
     return message;
   },
 
-  fromJSON(object: any): UnfollowRequest {
+  fromJSON(object: any): FollowRequest {
     return { message: isSet(object.message) ? globalThis.String(object.message) : "" };
   },
 
-  toJSON(message: UnfollowRequest): unknown {
+  toJSON(message: FollowRequest): unknown {
     const obj: any = {};
     if (message.message !== "") {
       obj.message = message.message;
@@ -65,32 +65,32 @@ export const UnfollowRequest: MessageFns<UnfollowRequest> = {
     return obj;
   },
 
-  create(base?: DeepPartial<UnfollowRequest>): UnfollowRequest {
-    return UnfollowRequest.fromPartial(base ?? {});
+  create(base?: DeepPartial<FollowRequest>): FollowRequest {
+    return FollowRequest.fromPartial(base ?? {});
   },
-  fromPartial(object: DeepPartial<UnfollowRequest>): UnfollowRequest {
-    const message = createBaseUnfollowRequest();
+  fromPartial(object: DeepPartial<FollowRequest>): FollowRequest {
+    const message = createBaseFollowRequest();
     message.message = object.message ?? "";
     return message;
   },
 };
 
-function createBaseUnfollowResponse(): UnfollowResponse {
+function createBaseFollowResponse(): FollowResponse {
   return { message: "" };
 }
 
-export const UnfollowResponse: MessageFns<UnfollowResponse> = {
-  encode(message: UnfollowResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+export const FollowResponse: MessageFns<FollowResponse> = {
+  encode(message: FollowResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
     if (message.message !== "") {
       writer.uint32(10).string(message.message);
     }
     return writer;
   },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): UnfollowResponse {
+  decode(input: BinaryReader | Uint8Array, length?: number): FollowResponse {
     const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseUnfollowResponse();
+    const message = createBaseFollowResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -111,11 +111,11 @@ export const UnfollowResponse: MessageFns<UnfollowResponse> = {
     return message;
   },
 
-  fromJSON(object: any): UnfollowResponse {
+  fromJSON(object: any): FollowResponse {
     return { message: isSet(object.message) ? globalThis.String(object.message) : "" };
   },
 
-  toJSON(message: UnfollowResponse): unknown {
+  toJSON(message: FollowResponse): unknown {
     const obj: any = {};
     if (message.message !== "") {
       obj.message = message.message;
@@ -123,11 +123,11 @@ export const UnfollowResponse: MessageFns<UnfollowResponse> = {
     return obj;
   },
 
-  create(base?: DeepPartial<UnfollowResponse>): UnfollowResponse {
-    return UnfollowResponse.fromPartial(base ?? {});
+  create(base?: DeepPartial<FollowResponse>): FollowResponse {
+    return FollowResponse.fromPartial(base ?? {});
   },
-  fromPartial(object: DeepPartial<UnfollowResponse>): UnfollowResponse {
-    const message = createBaseUnfollowResponse();
+  fromPartial(object: DeepPartial<FollowResponse>): FollowResponse {
+    const message = createBaseFollowResponse();
     message.message = object.message ?? "";
     return message;
   },

@@ -2,37 +2,37 @@
 // versions:
 //   protoc-gen-ts_proto  v2.6.1
 //   protoc               unknown
-// source: proto/microblog/rpc/v1/messages/feed.proto
+// source: proto/microblog/rpc/v1/follower.proto
 
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
 
 export const protobufPackage = "microblog.rpc.v1";
 
-export interface PingRequest {
+export interface UnfollowRequest {
   message: string;
 }
 
-export interface PingResponse {
+export interface UnfollowResponse {
   message: string;
 }
 
-function createBasePingRequest(): PingRequest {
+function createBaseUnfollowRequest(): UnfollowRequest {
   return { message: "" };
 }
 
-export const PingRequest: MessageFns<PingRequest> = {
-  encode(message: PingRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+export const UnfollowRequest: MessageFns<UnfollowRequest> = {
+  encode(message: UnfollowRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
     if (message.message !== "") {
       writer.uint32(10).string(message.message);
     }
     return writer;
   },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): PingRequest {
+  decode(input: BinaryReader | Uint8Array, length?: number): UnfollowRequest {
     const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBasePingRequest();
+    const message = createBaseUnfollowRequest();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -53,11 +53,11 @@ export const PingRequest: MessageFns<PingRequest> = {
     return message;
   },
 
-  fromJSON(object: any): PingRequest {
+  fromJSON(object: any): UnfollowRequest {
     return { message: isSet(object.message) ? globalThis.String(object.message) : "" };
   },
 
-  toJSON(message: PingRequest): unknown {
+  toJSON(message: UnfollowRequest): unknown {
     const obj: any = {};
     if (message.message !== "") {
       obj.message = message.message;
@@ -65,32 +65,32 @@ export const PingRequest: MessageFns<PingRequest> = {
     return obj;
   },
 
-  create(base?: DeepPartial<PingRequest>): PingRequest {
-    return PingRequest.fromPartial(base ?? {});
+  create(base?: DeepPartial<UnfollowRequest>): UnfollowRequest {
+    return UnfollowRequest.fromPartial(base ?? {});
   },
-  fromPartial(object: DeepPartial<PingRequest>): PingRequest {
-    const message = createBasePingRequest();
+  fromPartial(object: DeepPartial<UnfollowRequest>): UnfollowRequest {
+    const message = createBaseUnfollowRequest();
     message.message = object.message ?? "";
     return message;
   },
 };
 
-function createBasePingResponse(): PingResponse {
+function createBaseUnfollowResponse(): UnfollowResponse {
   return { message: "" };
 }
 
-export const PingResponse: MessageFns<PingResponse> = {
-  encode(message: PingResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+export const UnfollowResponse: MessageFns<UnfollowResponse> = {
+  encode(message: UnfollowResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
     if (message.message !== "") {
       writer.uint32(10).string(message.message);
     }
     return writer;
   },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): PingResponse {
+  decode(input: BinaryReader | Uint8Array, length?: number): UnfollowResponse {
     const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBasePingResponse();
+    const message = createBaseUnfollowResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -111,11 +111,11 @@ export const PingResponse: MessageFns<PingResponse> = {
     return message;
   },
 
-  fromJSON(object: any): PingResponse {
+  fromJSON(object: any): UnfollowResponse {
     return { message: isSet(object.message) ? globalThis.String(object.message) : "" };
   },
 
-  toJSON(message: PingResponse): unknown {
+  toJSON(message: UnfollowResponse): unknown {
     const obj: any = {};
     if (message.message !== "") {
       obj.message = message.message;
@@ -123,11 +123,11 @@ export const PingResponse: MessageFns<PingResponse> = {
     return obj;
   },
 
-  create(base?: DeepPartial<PingResponse>): PingResponse {
-    return PingResponse.fromPartial(base ?? {});
+  create(base?: DeepPartial<UnfollowResponse>): UnfollowResponse {
+    return UnfollowResponse.fromPartial(base ?? {});
   },
-  fromPartial(object: DeepPartial<PingResponse>): PingResponse {
-    const message = createBasePingResponse();
+  fromPartial(object: DeepPartial<UnfollowResponse>): UnfollowResponse {
+    const message = createBaseUnfollowResponse();
     message.message = object.message ?? "";
     return message;
   },

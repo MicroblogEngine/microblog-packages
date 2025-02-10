@@ -2,37 +2,37 @@
 // versions:
 //   protoc-gen-ts_proto  v2.6.1
 //   protoc               unknown
-// source: proto/microblog/rpc/v1/messages/notification.proto
+// source: proto/microblog/rpc/v1/search.proto
 
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
 
 export const protobufPackage = "microblog.rpc.v1";
 
-export interface NotifyRequest {
+export interface SearchRequest {
   message: string;
 }
 
-export interface NotifyResponse {
+export interface SearchResponse {
   message: string;
 }
 
-function createBaseNotifyRequest(): NotifyRequest {
+function createBaseSearchRequest(): SearchRequest {
   return { message: "" };
 }
 
-export const NotifyRequest: MessageFns<NotifyRequest> = {
-  encode(message: NotifyRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+export const SearchRequest: MessageFns<SearchRequest> = {
+  encode(message: SearchRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
     if (message.message !== "") {
       writer.uint32(10).string(message.message);
     }
     return writer;
   },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): NotifyRequest {
+  decode(input: BinaryReader | Uint8Array, length?: number): SearchRequest {
     const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseNotifyRequest();
+    const message = createBaseSearchRequest();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -53,11 +53,11 @@ export const NotifyRequest: MessageFns<NotifyRequest> = {
     return message;
   },
 
-  fromJSON(object: any): NotifyRequest {
+  fromJSON(object: any): SearchRequest {
     return { message: isSet(object.message) ? globalThis.String(object.message) : "" };
   },
 
-  toJSON(message: NotifyRequest): unknown {
+  toJSON(message: SearchRequest): unknown {
     const obj: any = {};
     if (message.message !== "") {
       obj.message = message.message;
@@ -65,32 +65,32 @@ export const NotifyRequest: MessageFns<NotifyRequest> = {
     return obj;
   },
 
-  create(base?: DeepPartial<NotifyRequest>): NotifyRequest {
-    return NotifyRequest.fromPartial(base ?? {});
+  create(base?: DeepPartial<SearchRequest>): SearchRequest {
+    return SearchRequest.fromPartial(base ?? {});
   },
-  fromPartial(object: DeepPartial<NotifyRequest>): NotifyRequest {
-    const message = createBaseNotifyRequest();
+  fromPartial(object: DeepPartial<SearchRequest>): SearchRequest {
+    const message = createBaseSearchRequest();
     message.message = object.message ?? "";
     return message;
   },
 };
 
-function createBaseNotifyResponse(): NotifyResponse {
+function createBaseSearchResponse(): SearchResponse {
   return { message: "" };
 }
 
-export const NotifyResponse: MessageFns<NotifyResponse> = {
-  encode(message: NotifyResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+export const SearchResponse: MessageFns<SearchResponse> = {
+  encode(message: SearchResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
     if (message.message !== "") {
       writer.uint32(10).string(message.message);
     }
     return writer;
   },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): NotifyResponse {
+  decode(input: BinaryReader | Uint8Array, length?: number): SearchResponse {
     const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseNotifyResponse();
+    const message = createBaseSearchResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -111,11 +111,11 @@ export const NotifyResponse: MessageFns<NotifyResponse> = {
     return message;
   },
 
-  fromJSON(object: any): NotifyResponse {
+  fromJSON(object: any): SearchResponse {
     return { message: isSet(object.message) ? globalThis.String(object.message) : "" };
   },
 
-  toJSON(message: NotifyResponse): unknown {
+  toJSON(message: SearchResponse): unknown {
     const obj: any = {};
     if (message.message !== "") {
       obj.message = message.message;
@@ -123,11 +123,11 @@ export const NotifyResponse: MessageFns<NotifyResponse> = {
     return obj;
   },
 
-  create(base?: DeepPartial<NotifyResponse>): NotifyResponse {
-    return NotifyResponse.fromPartial(base ?? {});
+  create(base?: DeepPartial<SearchResponse>): SearchResponse {
+    return SearchResponse.fromPartial(base ?? {});
   },
-  fromPartial(object: DeepPartial<NotifyResponse>): NotifyResponse {
-    const message = createBaseNotifyResponse();
+  fromPartial(object: DeepPartial<SearchResponse>): SearchResponse {
+    const message = createBaseSearchResponse();
     message.message = object.message ?? "";
     return message;
   },

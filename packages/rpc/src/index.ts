@@ -1,44 +1,44 @@
 export { 
   PingRequest, 
   PingResponse 
-} from "./proto/microblog/rpc/v1/messages/feed";
+} from "./proto/microblog/rpc/v1/feed";
 
 export { 
   UnfollowRequest, 
   UnfollowResponse
-} from "./proto/microblog/rpc/v1/messages/follower";
+} from "./proto/microblog/rpc/v1/follower";
 
 export { 
   FollowRequest, 
   FollowResponse
-} from "./proto/microblog/rpc/v1/messages/following";
+} from "./proto/microblog/rpc/v1/following";
 
 export { 
   GetProfilesMediasRequest, 
   GetProfilesMediasResponse 
-} from "./proto/microblog/rpc/v1/messages/media";
+} from "./proto/microblog/rpc/v1/media";
 
 export { 
   NotifyRequest, 
   NotifyResponse 
-} from "./proto/microblog/rpc/v1/messages/notification";
+} from "./proto/microblog/rpc/v1/notification";
 
 export {
   CreateProfileRequest,
   CreateProfileResponse,
   GetProfileByUserIdRequest,
   GetProfileByUserIdResponse,
-} from "./proto/microblog/rpc/v1/messages/profile";
+} from "./proto/microblog/rpc/v1/profile";
 
 export { 
   SearchRequest, 
   SearchResponse 
-} from "./proto/microblog/rpc/v1/messages/search";
+} from "./proto/microblog/rpc/v1/search";
 
 export { 
   GetUsersRequest, 
   GetUsersResponse 
-} from "./proto/microblog/rpc/v1/messages/user";
+} from "./proto/microblog/rpc/v1/user";
 
 export {
   DeepPartial,

@@ -6,19 +6,19 @@
 
 /* eslint-disable */
 import { type CallContext, type CallOptions } from "nice-grpc-common";
-import { PingRequest, PingResponse } from "./messages/feed";
-import { UnfollowRequest, UnfollowResponse } from "./messages/follower";
-import { FollowRequest, FollowResponse } from "./messages/following";
-import { GetProfilesMediasRequest, GetProfilesMediasResponse } from "./messages/media";
-import { NotifyRequest, NotifyResponse } from "./messages/notification";
+import { PingRequest, PingResponse } from "./feed";
+import { UnfollowRequest, UnfollowResponse } from "./follower";
+import { FollowRequest, FollowResponse } from "./following";
+import { GetProfilesMediasRequest, GetProfilesMediasResponse } from "./media";
+import { NotifyRequest, NotifyResponse } from "./notification";
 import {
   CreateProfileRequest,
   CreateProfileResponse,
   GetProfileByUserIdRequest,
   GetProfileByUserIdResponse,
-} from "./messages/profile";
-import { SearchRequest, SearchResponse } from "./messages/search";
-import { GetUsersRequest, GetUsersResponse } from "./messages/user";
+} from "./profile";
+import { SearchRequest, SearchResponse } from "./search";
+import { GetUsersRequest, GetUsersResponse } from "./user";
 
 export const protobufPackage = "microblog.rpc.v1";
 
