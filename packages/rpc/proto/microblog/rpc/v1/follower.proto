@@ -5,10 +5,10 @@ option go_package = "github.com/ararog/microblog-shared;rpc";
 
 package microblog.rpc.v1;
 
-message PingRequest {
+message UnfollowRequest {
   string message = 1;
 }  
 
-message PingResponse {
+message UnfollowResponse {
   string message = 1;
 }

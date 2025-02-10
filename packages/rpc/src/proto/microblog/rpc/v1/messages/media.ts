@@ -2,11 +2,10 @@
 // versions:
 //   protoc-gen-ts_proto  v2.6.1
 //   protoc               unknown
-// source: proto/microblog/rpc/v1/media.proto
+// source: proto/microblog/rpc/v1/messages/media.proto
 
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
-import { type CallContext, type CallOptions } from "nice-grpc-common";
 
 export const protobufPackage = "microblog.rpc.v1";
 
@@ -250,36 +249,6 @@ export const GetProfilesMediasResponse: MessageFns<GetProfilesMediasResponse> = 
     return message;
   },
 };
-
-export type MediasServiceDefinition = typeof MediasServiceDefinition;
-export const MediasServiceDefinition = {
-  name: "MediasService",
-  fullName: "microblog.rpc.v1.MediasService",
-  methods: {
-    getProfilesMedias: {
-      name: "GetProfilesMedias",
-      requestType: GetProfilesMediasRequest,
-      requestStream: false,
-      responseType: GetProfilesMediasResponse,
-      responseStream: false,
-      options: {},
-    },
-  },
-} as const;
-
-export interface MediasServiceImplementation<CallContextExt = {}> {
-  getProfilesMedias(
-    request: GetProfilesMediasRequest,
-    context: CallContext & CallContextExt,
-  ): Promise<DeepPartial<GetProfilesMediasResponse>>;
-}
-
-export interface MediasServiceClient<CallOptionsExt = {}> {
-  getProfilesMedias(
-    request: DeepPartial<GetProfilesMediasRequest>,
-    options?: CallOptions & CallOptionsExt,
-  ): Promise<GetProfilesMediasResponse>;
-}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 

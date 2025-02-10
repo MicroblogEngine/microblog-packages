@@ -2,11 +2,10 @@
 // versions:
 //   protoc-gen-ts_proto  v2.6.1
 //   protoc               unknown
-// source: proto/microblog/rpc/v1/profile.proto
+// source: proto/microblog/rpc/v1/messages/profile.proto
 
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
-import { type CallContext, type CallOptions } from "nice-grpc-common";
 
 export const protobufPackage = "microblog.rpc.v1";
 
@@ -410,52 +409,6 @@ export const CreateProfileResponse: MessageFns<CreateProfileResponse> = {
     return message;
   },
 };
-
-export type ProfilesServiceDefinition = typeof ProfilesServiceDefinition;
-export const ProfilesServiceDefinition = {
-  name: "ProfilesService",
-  fullName: "microblog.rpc.v1.ProfilesService",
-  methods: {
-    getProfileByUserId: {
-      name: "GetProfileByUserId",
-      requestType: GetProfileByUserIdRequest,
-      requestStream: false,
-      responseType: GetProfileByUserIdResponse,
-      responseStream: false,
-      options: {},
-    },
-    createProfile: {
-      name: "CreateProfile",
-      requestType: CreateProfileRequest,
-      requestStream: false,
-      responseType: CreateProfileResponse,
-      responseStream: false,
-      options: {},
-    },
-  },
-} as const;
-
-export interface ProfilesServiceImplementation<CallContextExt = {}> {
-  getProfileByUserId(
-    request: GetProfileByUserIdRequest,
-    context: CallContext & CallContextExt,
-  ): Promise<DeepPartial<GetProfileByUserIdResponse>>;
-  createProfile(
-    request: CreateProfileRequest,
-    context: CallContext & CallContextExt,
-  ): Promise<DeepPartial<CreateProfileResponse>>;
-}
-
-export interface ProfilesServiceClient<CallOptionsExt = {}> {
-  getProfileByUserId(
-    request: DeepPartial<GetProfileByUserIdRequest>,
-    options?: CallOptions & CallOptionsExt,
-  ): Promise<GetProfileByUserIdResponse>;
-  createProfile(
-    request: DeepPartial<CreateProfileRequest>,
-    options?: CallOptions & CallOptionsExt,
-  ): Promise<CreateProfileResponse>;
-}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 

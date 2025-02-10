@@ -2,11 +2,10 @@
 // versions:
 //   protoc-gen-ts_proto  v2.6.1
 //   protoc               unknown
-// source: proto/microblog/rpc/v1/user.proto
+// source: proto/microblog/rpc/v1/messages/user.proto
 
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
-import { type CallContext, type CallOptions } from "nice-grpc-common";
 
 export const protobufPackage = "microblog.rpc.v1";
 
@@ -214,30 +213,6 @@ export const GetUsersResponse: MessageFns<GetUsersResponse> = {
     return message;
   },
 };
-
-export type UsersServiceDefinition = typeof UsersServiceDefinition;
-export const UsersServiceDefinition = {
-  name: "UsersService",
-  fullName: "microblog.rpc.v1.UsersService",
-  methods: {
-    getUsers: {
-      name: "GetUsers",
-      requestType: GetUsersRequest,
-      requestStream: false,
-      responseType: GetUsersResponse,
-      responseStream: false,
-      options: {},
-    },
-  },
-} as const;
-
-export interface UsersServiceImplementation<CallContextExt = {}> {
-  getUsers(request: GetUsersRequest, context: CallContext & CallContextExt): Promise<DeepPartial<GetUsersResponse>>;
-}
-
-export interface UsersServiceClient<CallOptionsExt = {}> {
-  getUsers(request: DeepPartial<GetUsersRequest>, options?: CallOptions & CallOptionsExt): Promise<GetUsersResponse>;
-}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 

@@ -2,11 +2,10 @@
 // versions:
 //   protoc-gen-ts_proto  v2.6.1
 //   protoc               unknown
-// source: proto/microblog/rpc/v1/feed.proto
+// source: proto/microblog/rpc/v1/messages/feed.proto
 
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
-import { type CallContext, type CallOptions } from "nice-grpc-common";
 
 export const protobufPackage = "microblog.rpc.v1";
 
@@ -133,30 +132,6 @@ export const PingResponse: MessageFns<PingResponse> = {
     return message;
   },
 };
-
-export type FeedServiceDefinition = typeof FeedServiceDefinition;
-export const FeedServiceDefinition = {
-  name: "FeedService",
-  fullName: "microblog.rpc.v1.FeedService",
-  methods: {
-    ping: {
-      name: "Ping",
-      requestType: PingRequest,
-      requestStream: false,
-      responseType: PingResponse,
-      responseStream: false,
-      options: {},
-    },
-  },
-} as const;
-
-export interface FeedServiceImplementation<CallContextExt = {}> {
-  ping(request: PingRequest, context: CallContext & CallContextExt): Promise<DeepPartial<PingResponse>>;
-}
-
-export interface FeedServiceClient<CallOptionsExt = {}> {
-  ping(request: DeepPartial<PingRequest>, options?: CallOptions & CallOptionsExt): Promise<PingResponse>;
-}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 

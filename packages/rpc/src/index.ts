@@ -1,30 +1,66 @@
+export { 
+  PingRequest, 
+  PingResponse 
+} from "./proto/microblog/rpc/v1/messages/feed";
+
+export { 
+  UnfollowRequest, 
+  UnfollowResponse
+} from "./proto/microblog/rpc/v1/messages/follower";
+
+export { 
+  FollowRequest, 
+  FollowResponse
+} from "./proto/microblog/rpc/v1/messages/following";
+
+export { 
+  GetProfilesMediasRequest, 
+  GetProfilesMediasResponse 
+} from "./proto/microblog/rpc/v1/messages/media";
+
+export { 
+  NotifyRequest, 
+  NotifyResponse 
+} from "./proto/microblog/rpc/v1/messages/notification";
+
 export {
-  type DeepPartial,
   CreateProfileRequest,
   CreateProfileResponse,
   GetProfileByUserIdRequest,
   GetProfileByUserIdResponse,
+} from "./proto/microblog/rpc/v1/messages/profile";
+
+export { 
+  SearchRequest, 
+  SearchResponse 
+} from "./proto/microblog/rpc/v1/messages/search";
+
+export { 
+  GetUsersRequest, 
+  GetUsersResponse 
+} from "./proto/microblog/rpc/v1/messages/user";
+
+export {
+  DeepPartial,
+  ProfilesServiceClient,
   ProfilesServiceDefinition,
-  type ProfilesServiceImplementation,
-} from "./proto/microblog/rpc/v1/profile";
-
-export {
-  FeedServiceDefinition,
-  type FeedServiceImplementation,
-  PingRequest,
-  PingResponse,
-} from "./proto/microblog/rpc/v1/feed";
-
-export {
+  ProfilesServiceImplementation,
+  UsersServiceClient,
   UsersServiceDefinition,
-  type UsersServiceImplementation,
-  GetUsersRequest,
-  GetUsersResponse,
-} from "./proto/microblog/rpc/v1/user";
-
-export {
-  MediasServiceDefinition,
-  type MediasServiceImplementation,
-  GetProfilesMediasRequest,
-  GetProfilesMediasResponse,
-} from "./proto/microblog/rpc/v1/media";
+  UsersServiceImplementation,
+  FeedServiceClient,
+  FeedServiceDefinition,
+  FeedServiceImplementation,
+  FollowerServiceClient,
+  FollowerServiceDefinition,
+  FollowerServiceImplementation,
+  FollowingServiceClient,
+  FollowingServiceDefinition,
+  FollowingServiceImplementation,
+  NotificationServiceClient,
+  NotificationServiceDefinition,
+  NotificationServiceImplementation,
+  SearchServiceClient,
+  SearchServiceDefinition,
+  SearchServiceImplementation,
+} from "./proto/microblog/rpc/v1/microblog";
