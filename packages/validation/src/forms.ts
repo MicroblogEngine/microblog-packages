@@ -43,13 +43,17 @@ export const SignupUserFormSchema = z
     password: z
       .string({ required_error: "Password is required" })
       .min(1, "Password is required")
-      .min(8, "Password must be more than 8 characters")
-      .max(32, "Password must be less than 32 characters"),
+      .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,32}$/, {
+        message:
+          "Password must contain at least one uppercase letter, one lowercase letter, one number and one special character",
+      }),
     confirmPassword: z
       .string({ required_error: "Password confirmation is required" })
       .min(1, "Password confirmation is required")
-      .min(8, "Password confirmation must be more than 8 characters")
-      .max(32, "Password confirmation must be less than 32 characters"),
+      .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,32}$/, {
+        message:
+          "Password must contain at least one uppercase letter, one lowercase letter, one number and one special character",
+      }),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Password and its confirmation doesn't match",
@@ -74,16 +78,29 @@ export const ResetPasswordFormSchema = z.object({
   password: z
     .string({ required_error: "Password is required" })
     .min(1, "Password is required")
-    .min(8, "Password must be more than 8 characters")
-    .max(32, "Password must be less than 32 characters"),
+    .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,32}$/, {
+      message:
+        "Password must contain at least one uppercase letter, one lowercase letter, one number and one special character",
+    }),
   confirmPassword: z
     .string({ required_error: "Password confirmation is required" })
     .min(1, "Password confirmation is required")
-    .min(8, "Password confirmation must be more than 8 characters")
-    .max(32, "Password confirmation must be less than 32 characters"),
+    .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,32}$/, {
+      message:
+        "Password must contain at least one uppercase letter, one lowercase letter, one number and one special character",
+    }),
 })
 .refine((data) => data.password === data.confirmPassword, {
   message: "Password and its confirmation doesn't match",
   path: ["confirmPassword"],
 });
 
+export const FeedFormSchema = z
+  .object({
+    text: z
+      .string({ required_error: "Text is required" })
+      .max(400, "Your post must be less than 400 characters"),
+    profileId: z
+      .string({ required_error: "Profile ID is required" })
+      .uuid("Invalid profile ID"),
+  });
